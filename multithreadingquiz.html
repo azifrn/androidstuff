@@ -6,7 +6,6 @@ font-family: 'Kodchasan', sans-serif;
     background-color: #333333;
     background: linear-gradient(0deg, #000 0%, #3f3f3f 100%);
     min-width: 1000px;
-
 }
 .question{
     font-weight: 900;
@@ -37,6 +36,7 @@ font-family: 'Kodchasan', sans-serif;
 	padding: 20px;
 	cursor: pointer;
 	margin-bottom: 20px;
+    min-width: 500px;
 }
 #submit:hover{
 	background-color: #047591;
@@ -55,14 +55,17 @@ input[type=radio] {
 margin-top:50px;
 margin-left:50px;
 }
+#results{
+font-size: 1.3em;
+}
 </style>
 
 <link href="https://fonts.googleapis.com/css?family=Kodchasan&display=swap" rel="stylesheet">
 
 <div class="x">
 <div id="quiz"></div>
+<div id="results"><br><br></div>
 <button id="submit">Get Results</button>
-<div id="results"></div>
 </div>
 
 
@@ -83,22 +86,62 @@ var myQuestions = [
 	{
 		question: "CPU (in computing) is short for...",
 		answers: {
-			A: 'Ceramic Public Urinal',
-			B: 'Chemical Protective Underwear',
-			C: 'Control Program Unit',
-            D: 'Central Processing Unit',
+			A: 'Ceramic Public Urinal.',
+			B: 'Chemical Protective Underwear.',
+			C: 'Control Program Unit.',
+            D: 'Central Processing Unit.',
 		},
 		correctAnswer: 'D'
 	},
 	{
-		question: "CPU (in computing) is short for...",
+		question: "With multiple threads, a single process can...",
 		answers: {
-			A: 'Ceramic Public Urinal',
-			B: 'Chemical Protective Underwear',
-			C: 'Control Program Unit',
-            D: 'Central Processing Unit',
+			A: 'Handle a variety of tasks simultaneously.',
+			B: 'Avoid deadlocks from happening.',
+			C: 'Run even if the memory is full.',
+            D: 'Always avoid deadlocks.',
+		},
+		correctAnswer: 'A'
+	},
+	{
+		question: "Which of the following is NOT a multithreading model?",
+		answers: {
+			A: 'One-to-Many',
+			B: 'Many-to-Many',
+			C: 'Many-to-One',
+            D: 'One-to-One',
+		},
+		correctAnswer: 'A'
+	},
+	{
+		question: "'Each user thread maps to kernel thread' refers to what model?",
+		answers: {
+			A: 'One-to-Many',
+			B: 'Many-to-Many',
+			C: 'Many-to-One',
+            D: 'One-to-One',
 		},
 		correctAnswer: 'D'
+	},
+	{
+		question: "Which of the following is not an advantage of multithreading?",
+		answers: {
+			A: 'Responsiveness',
+			B: 'Complexity',
+			C: 'Scalability',
+            D: 'Economic',
+		},
+		correctAnswer: 'B'
+	},
+	{
+		question: "Which multithreading model is generally the most ideal?",
+		answers: {
+			A: 'Many-to-One',
+			B: 'Many-to-Many',
+			C: 'One-to-One',
+            D: 'One-to-Many',
+		},
+		correctAnswer: 'B'
 	}
 
 
@@ -176,7 +219,14 @@ function showResults(questions, quizContainer, resultsContainer){
 	}
 
 	// show number of correct answers out of total
-	resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length;
+
+    if(numCorrect==7)
+	resultsContainer.innerHTML = 'Congratulations! <br>[' + numCorrect + ' out of ' + questions.length+']';
+    else if(numCorrect>1)
+	resultsContainer.innerHTML = 'Nice try! <br>[' + numCorrect + ' out of ' + questions.length+']';
+    else
+	resultsContainer.innerHTML = 'Oops! Try again! <br>[' + numCorrect + ' out of ' + questions.length+']';
+
 }
 	// show the questions
 	showQuestions(questions, quizContainer);
