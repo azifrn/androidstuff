@@ -13,9 +13,8 @@ font-family: 'Kodchasan', sans-serif;
     font-size: 2em;
     background-color: #004759;
     padding-left: 20px;
-    border-radius: 10px;
-    max-width: 1000px;
-    min-width: 1000px;
+    border-radius: 20px;
+    width:800px;
 }
 
 .answers {
@@ -36,7 +35,8 @@ font-family: 'Kodchasan', sans-serif;
 	padding: 20px;
 	cursor: pointer;
 	margin-bottom: 20px;
-    min-width: 500px;
+    width:800px;
+    height: 150px;
 }
 #submit:hover{
 	background-color: #047591;
@@ -54,9 +54,10 @@ input[type=radio] {
 .x {
 margin-top:50px;
 margin-left:50px;
+margin-right:50px;
 }
 #results{
-font-size: 1.3em;
+font-size: 2em;
 }
 </style>
 
@@ -64,7 +65,7 @@ font-size: 1.3em;
 
 <div class="x">
 <div id="quiz"></div>
-<div id="results"><br><br></div>
+<div id="results"><br></div><br>
 <button id="submit">Get Results</button>
 </div>
 
@@ -220,12 +221,12 @@ function showResults(questions, quizContainer, resultsContainer){
 
 	// show number of correct answers out of total
 
-    if(numCorrect==7)
-	resultsContainer.innerHTML = 'Congratulations! <br>[' + numCorrect + ' out of ' + questions.length+']';
-    else if(numCorrect>1)
-	resultsContainer.innerHTML = 'Nice try! <br>[' + numCorrect + ' out of ' + questions.length+']';
+    if(numCorrect>5)
+	resultsContainer.innerHTML = 'Congratulations! <font color="lightgreen">[' + numCorrect + ' out of ' + questions.length+']</font><br>';
+    else if(numCorrect>2)
+	resultsContainer.innerHTML = 'Nice try! <font color="yellow">[' + numCorrect + ' out of ' + questions.length+']</font><br>';
     else
-	resultsContainer.innerHTML = 'Oops! Try again! <br>[' + numCorrect + ' out of ' + questions.length+']';
+	resultsContainer.innerHTML = 'Oops! Try again! <font color="red">[' + numCorrect + ' out of ' + questions.length+']</font><br>';
 
 }
 	// show the questions
